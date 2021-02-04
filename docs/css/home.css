@@ -1,0 +1,65 @@
+*{
+    margin: 0px;
+    padding: 0px
+}
+
+html{
+    background: #0d0d0d;
+    text-align: center;
+}
+
+.aviso{
+    margin-top: 20vh;
+    box-sizing: border-box;
+}
+
+img{
+    width: 500px;
+    height: 400px;
+    margin: 50px 25px 0 0;
+}
+
+.spinner {
+    margin: 70px auto 0;
+    text-align: center;
+    color: rgb(27,137,221);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 40px;
+}
+  
+.spinner > div {
+    width: 8px;
+    height: 8px;
+    margin: 0 2px;
+    background: rgb(0,122,214);
+    background: radial-gradient(circle, rgba(0,122,214,1) 0%, rgba(0,112,192,1) 100%);
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-bouncedelay 2.3s infinite ease-in-out both;
+    animation: sk-bouncedelay 2s infinite ease-in-out both;
+}
+  
+.spinner .bounce1 {
+    -webkit-animation-delay: -0.48s;
+    animation-delay: -0.48s;
+}
+  
+.spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+  
+@-webkit-keyframes sk-bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0) }
+    40% { -webkit-transform: scale(1.0) }
+}
+  
+@keyframes sk-bouncedelay {
+    0%, 80%, 100% { 
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    } 40% { 
+      -webkit-transform: scale(1.0);
+      transform: scale(1.0);
+    }
+}

@@ -1,2 +1,4 @@
 node_modules
-docs
+docs/*.php
+docs/**/*.php
+docs/*.js
