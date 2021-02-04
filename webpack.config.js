@@ -13,8 +13,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const fs = require('fs');
 
-module.exports = {
+var retorno = {
   mode: 'development',
   entry: './src/main.js',
 
@@ -32,19 +33,7 @@ module.exports = {
       _: "underscore"
     }),
     //new MiniCssExtractPlugin({ filename:'styles.[chunkhash].css' }),
-    //new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }), //apagando o index.html
-    new HtmlWebpackPlugin({
-      template: "index.ejs",
-      inject: false,
-      meta: {
-        "viewport": `width=device-width, height=device-height, initial-scale=1, user-scalable=no`,
-        "author": `Arthur Ferreira Ely, Eduardo P. Gomez`,
-        "revisit-after": `1 day`,
-        "copyright": `© ${new Date().getFullYear()} ArttiDev`,
-        "language": `Portuguese`,
-        "robots": `index,follow`
-      }
-    }),
+    //new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }) //apagando o index.html
   ],
 
   module: {
@@ -62,16 +51,16 @@ module.exports = {
       },
 
       //transforma EJS em PHP
-      {
-        test: /\.ejs$/,
-        include: [path.resolve(__dirname, 'ejs')],
+      /*{
+        test: /\.hbs$/,
+        include: [path.resolve(__dirname, 'hbs')],
         loader: 'ejs-loader',
         options: {
           variable: 'data',
           interpolate : '\\{\\{(.+?)\\}\\}',
           evaluate : '\\[\\[(.+?)\\]\\]'
         }
-      },
+      },*/
 
       //compacta os CSSs
       {
@@ -110,3 +99,27 @@ module.exports = {
     }
   }
 }
+
+function carregaTodasAsPaginas() {
+  fs.readdirSync("./hbs/").forEach(file => { //isso é um for para atividade assíncrona
+      var sem_extensão = file.replace(".hbs","");
+
+      console.log(`${file} foi para ${sem_extensão}`);
+
+      /**
+       * adiciona a pagina como plugin
+       */
+      retorno.plugins[retorno.plugins.length] = new HtmlWebpackPlugin({
+        template: "./hbs/" + file,
+        inject: false,
+        filename: sem_extensão + ".php",
+      
+        templateParameters: require("./src/headerbars/variaveis.js"),
+      })
+    });
+
+}
+
+carregaTodasAsPaginas();
+
+module.exports = retorno;
