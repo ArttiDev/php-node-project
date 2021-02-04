@@ -24,7 +24,7 @@ var retorno = {
   },
   
   devServer: {
-    contentBase: "../../public_html",
+    contentBase: "./docs",
   },
 
   plugins: [
