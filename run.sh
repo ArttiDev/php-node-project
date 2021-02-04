@@ -6,4 +6,4 @@ rm docs/**/*.php
 rm docs/*.js
 
 #gera novos arquivos
-npm run build
+npm run prebuild

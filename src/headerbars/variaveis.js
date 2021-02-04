@@ -8,7 +8,7 @@ module.exports = {
     <meta name=revisit-after content="1 day>
     <meta name=copyright content="© ${new Date().getFullYear()} ArttiDev">
     <meta language="Portuguese">
-    <meta name="robots" content="index,follow>"`,
+    <meta name="robots" content="index,follow">`,
     
     "valores": {
         "title": "\<%= htmlWebpackPlugin.options.title %\>"
